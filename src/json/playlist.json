@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Clean Me Up",
+    "artist": "Thomas Headon",
+    "img": "./assets/playlist/cover/clean-me-up-by-thomas-headon.jpg",
+    "audio": "./assets/playlist/audio/clean-me-up-by-thomas-headon.mp3"
+  },
+  {
+    "title": "CONVERSATIONS",
+    "artist": "Ryce",
+    "img": "./assets/playlist/cover/conversations-by-ryce.jpg",
+    "audio": "./assets/playlist/audio/conversations-by-ryce.mp3"
+  },
+  {
+    "title": "Couch Potato",
+    "artist": "Jakubi",
+    "img": "./assets/playlist/cover/couch-potato-by-jakubi.jpg",
+    "audio": "./assets/playlist/audio/couch-potato-by-jakubi.mp3"
+  },
+  {
+    "title": "How You Feel (I Don't Know)",
+    "artist": "marc Indigo",
+    "img": "./assets/playlist/cover/how-you-feel-by-marc-indigo.jpg",
+    "audio": "./assets/playlist/audio/how-you-feel-by-marc-indigo.mp3"
+  },
+  {
+    "title": "Left Coast",
+    "artist": "Dream Junkies (ft. Murs)",
+    "img": "./assets/playlist/cover/left-coast-by-dream-junkies-ft-murs.jpg",
+    "audio": "./assets/playlist/audio/left-coast-by-dream-junkies-ft-murs.mp3"
+  },
+  {
+    "title": "Mona Lisa",
+    "artist": "Valntn & Peter Fenn (ft. Murs)",
+    "img": "./assets/playlist/cover/mona-lisa-by-valntn-ft-peter-fenn-and-tray-haggerty.jpg",
+    "audio": "./assets/playlist/audio/mona-lisa-by-valntn-ft-peter-fenn-and-tray-haggarty.mp3"
+  },
+  {
+    "title": "Okay",
+    "artist": "Peter Fenn",
+    "img": "./assets/playlist/cover/okay-by-peter-fenn.jpg",
+    "audio": "./assets/playlist/audio/okay-by-peter-fenn.mp3"
+  },
+  {
+    "title": "Your Soul",
+    "artist": "Forrest.",
+    "img": "./assets/playlist/cover/your-soul-by-forrest.jpg",
+    "audio": "./assets/playlist/audio/your-soul-by-forrest.mp3"
+  }
+]

@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// $color-primary: #ff74a4;
+// $color-secondary: #9f6ea3;
+$color-primary: #55eeae;
+$color-secondary: #4fa4d6;
+$color-black: #18191f;
+$color-white: #cecece;
+$color-black-light: #515c6f;
+$color-shadow: rgba(#000, 0.5);
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle, #5c5c5c 0%, #2e2f35 50%, #18191f 100%);
+  font-family: 'Poppins', sans-serif;
+}
+
+.music-player {
+  position: relative;
+  width: 380px;
+  padding: 25px 15px;
+  background-color: $color-black;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px $color-shadow;
+  overflow: hidden;
+
+  .material-icons {
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .player-topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-white;
+
+    p { font-size: 18px; }
+  }
+
+  .player-nowplaying {
+    position: relative;
+    margin: 15px 8px;
+
+    #nowPlayingCover {
+      width: 100%;
+      height: 334px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px $color-shadow;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+    }
+    .nowplaying-details {
+      margin: 20px 0 30px 0;
+      color: $color-white;
+      text-align: center;
+      p#nowPlayingTitle {
+        font-size: 21px;
+        font-weight: bold;
+      }
+      p#nowPlayingArtist {
+        font-size: 18px;
+        opacity: 0.8;
+      }
+    }
+    .nowplaying-progress {
+      width: 100%;
+      input[type=range]#nowPlayingProgressBar {
+        position: relative;
+        width: 100%;
+        background: transparent;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+
+        // main track
+        &::-webkit-slider-runnable-track {
+          height: 6px;
+          border-radius: 6px;
+          background-color: rgba($color-white, 0.1);
+        }
+        // track thumb
+        &::-webkit-slider-thumb {
+          position: relative;
+          box-sizing: content-box;
+          appearance: none;
+          -webkit-appearance: none;
+
+          margin-top: -3px;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: $color-white;
+
+          opacity: 0;
+          transition: opacity 0.2s ease;
+        }
+        // only show track thumb on input:range hover
+        &:hover::-webkit-slider-thumb { opacity: 1; }
+        // track progress
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: var(--progress-track); // this will set on audio "timeupdate" event
+          height: 6px;
+          border-radius: 6px;
+          background-color: $color-white;
+        }
+      }
+      .progress-time {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+        color: $color-white;
+        opacity: 0.8;
+      }
+    }
+  }
+
+
+  .player-controller {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    i.material-icons {
+      font-size: 28px;
+      color: $color-white;
+      &#controlPrev {
+        font-size: 40px;
+        margin-right: -20px;
+      }
+      &#controlNext {
+        font-size: 40px;
+        margin-left: -20px;
+      }
+    }
+    #controlPlayPause {
+      position: relative;
+      width: 54px;
+      height: 54px;
+      border: none;
+      border-radius: 50px;
+      // background-color: $color-white;
+      background: linear-gradient($color-primary 0%, $color-secondary 100%);
+      cursor: pointer;
+      &::before {
+        content: attr(data-icon);
+        font-family: 'Material Icons';
+        -webkit-font-feature-settings: 'liga' 1;
+        -moz-font-feature-settings: 'liga' 1;
+        font-feature-settings: 'liga' 1;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: inherit;
+        font-size: 40px;
+        color: $color-black;
+        // background: linear-gradient($color-primary 0%, $color-secondary 100%);
+        //   background-clip: text;
+        //   -webkit-background-clip: text;
+        //   -webkit-text-fill-color: transparent;
+        //   font-weight: bold;
+      }
+    }
+  }
+
+  .player-queuelist {
+    position: absolute;
+    left: 0;
+    bottom: -50%;
+    padding: 25px 15px;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background-color: rgba($color-black, 0.98);
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+
+    &.active {
+      bottom: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .queuelist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      color: $color-white;
+      > div {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        i.material-icons { 
+          margin-right: 5px;
+          cursor: default; 
+        }
+      }
+    }
+
+    ul#queueList {
+      position: relative;
+      height: calc(100% - 40px);
+      overflow-y: auto;
+      
+      .queuelist-placeholder {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $color-white;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        padding: 5px;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+        &:hover {
+          box-shadow: 0 0 10px $color-shadow;
+        }
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 5px;
+        }
+        p {
+          color: $color-white;
+          font-size: 14px;
+        }
+        > div {
+          flex-grow: 2;
+          padding: 0 5px;
+          p:first-child {
+            width: 235px;
+            font-size: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          p:last-child {
+            color: rgba($color-white, 0.8);
+          }
+        }
+        &.playing > div p:first-child {
+          background: linear-gradient(90deg, $color-primary 0%, $color-secondary 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;
+        }
+      }
+
+      // scrollbar
+      &::-webkit-scrollbar {
+        width: 8px;
+        background-color: rgba($color-white, 0.1);
+        border-radius: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px $color-shadow;
+        background-color: rgba($color-white, 0.1);
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: linear-gradient($color-primary 0%, $color-secondary 100%);
+      }
+    }
+  }
+}

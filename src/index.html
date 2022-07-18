@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="icon" href="./assets/favicon.png" type="image/png" sizes="32x32">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="./styles/main.css"> -->
+</head>
+<body>
+
+  <div class="music-player">
+    <div class="player-topnav">
+      <i class="material-icons">expand_more</i>
+      <p>Now Playing</p>
+      <i class="material-icons">more_vert</i>
+    </div>
+
+    <div class="player-nowplaying">
+      <audio id="nowPlaying" src="#" preload="metadata"></audio>
+
+      <div id="nowPlayingCover"><img src="#" /></div>
+
+      <div class="nowplaying-details">
+        <p id="nowPlayingTitle">n/a</p>
+        <p id="nowPlayingArtist">n/a</p>
+      </div>
+
+      <div class="nowplaying-progress">
+        <input type="range" id="nowPlayingProgressBar" value="0">
+        <div class="progress-time">
+          <p id="nowPlayingCurrentDuration">0:00</p>
+          <p id="nowPlayingTotalDuration">n/a</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-controller">
+      <i id="controlRepeat" class="material-icons" data-song-order="repeat">repeat</i>
+      <i id="controlPrev" class="material-icons">skip_previous</i>
+      <button id="controlPlayPause" data-icon="play_arrow"></button>
+      <i id="controlNext" class="material-icons">skip_next</i>
+      <i id="controlShowQueue" class="material-icons">queue_music</i>
+    </div>
+
+    <div class="player-queuelist">
+      <div class="queuelist-header">
+        <div>
+          <i class="material-icons">queue_music</i>
+          <p>Play List</p>
+        </div>
+        <i id="controlCloseQueue" class="material-icons">close</i>
+      </div>
+      <ul id="queueList">
+        <h3 class="queuelist-placeholder">No playlist found!</h3>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- <script type="module" src="./javascripts/main.js"></script> -->
+</body>
+</html>
